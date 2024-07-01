@@ -1,6 +1,7 @@
 package com.example.friend;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -26,7 +27,7 @@ import org.json.JSONObject;
 public class MainActivity extends AppCompatActivity {
 
     String url="https://friendsapi-re5a.onrender.com/adddata";
-    AppCompatButton b1;
+    AppCompatButton b1,b2;
     EditText e1,e2,e3,e4;
 
 
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         b1=(AppCompatButton) findViewById(R.id.add);
+        b2=(AppCompatButton) findViewById(R.id.view);
         e1=(EditText) findViewById(R.id.name);
         e2=(EditText) findViewById(R.id.friend);
         e3=(EditText) findViewById(R.id.nickname);
@@ -82,6 +84,13 @@ public class MainActivity extends AppCompatActivity {
 
                 RequestQueue requestQueue= Volley.newRequestQueue(getApplicationContext());
                 requestQueue.add(jsonObjectRequest);
+            }
+        });
+        b2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(MainActivity.this,ViewAllFriends.class);
+                startActivity(intent);
             }
         });
     }
